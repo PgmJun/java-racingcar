@@ -97,7 +97,7 @@ class CarRacingTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "5"})
-    @DisplayName("시도 횟수 생성 성공 테스트")
+    @DisplayName("시도 횟수가 1 이상, 5 이하이면 시도 횟수가 정상적으로 생성된다.")
     void createTryCountSuccess(String tryAmount) {
         //when
         TryCount tryCount = carRacing.createTryCount(tryAmount);
@@ -107,8 +107,8 @@ class CarRacingTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0", "-1", "-30"})
-    @DisplayName("시도 횟수 생성 실패 테스트")
+    @ValueSource(strings = {"0", "6"})
+    @DisplayName("시도 횟수가 1 미만, 5 초과이면 시도 횟수가 정상적으로 생성되지 않는다")
     void createTryCountFailByRange(String tryAmount) {
         assertThatThrownBy(() -> carRacing.createTryCount(tryAmount))
                 .isInstanceOf(ValidateException.class)
@@ -117,7 +117,7 @@ class CarRacingTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"시도", "try", "", " "})
-    @DisplayName("시도 횟수 생성 실패 테스트")
+    @DisplayName("시도 횟수가 정수 타입이 아니면 정상적으로 생성되지 않는다")
     void createTryCountFailByInputFormat(String tryAmount) {
         assertThatThrownBy(() -> carRacing.createTryCount(tryAmount))
                 .isInstanceOf(ValidateException.class)
