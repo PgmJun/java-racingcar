@@ -50,6 +50,22 @@ class CarRacingTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"a", "abcde"})
+    @DisplayName("자동차 이름의 길이가 1 이상, 5 이하로 주어지면 자동차가 정상적으로 생성된다")
+    void createCarsSuccessWithCarNameLength(String carNames) {
+        assertThatCode(
+                () -> carRacing.createCars(carNames, accelerator));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"aaa,bbb", "abc,pobi,crong,honux,zix"})
+    @DisplayName("자동차의 수가 2 이상, 5 이하로 주어지면 자동차가 정상적으로 생성된다")
+    void createCarsSuccessWithSize(String carNames) {
+        assertThatCode(
+                () -> carRacing.createCars(carNames, accelerator));
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"abc", "abc,pobi,crong,honux,zix,hox"})
     @DisplayName("자동차의 수가 2 미만, 5 초과이면 생성에 실패한다")
     void createCarsFailBySize(String carNames) {
