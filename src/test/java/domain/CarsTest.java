@@ -6,7 +6,6 @@ import domain.accelerator.Accelerator;
 import domain.accelerator.strategy.MoveAccelerator;
 import domain.accelerator.strategy.RandomMoveAccelerator;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
